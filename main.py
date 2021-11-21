@@ -14,15 +14,16 @@ valaszok = {
         "Jól",
         "Nem jól",
         "Egész jól"
-    ]
+    ],
+    "hány óra van?": "Nem tudom."
 }
 
 def valaszol(kerdes):
-  if kerdes in list(valaszok(keys)):
+  if kerdes in list(valaszok.keys()):
     if isinstance(valaszok[kerdes], str):
       valasz = valaszok[kerdes]
     else:
-      valasz = valaszok[kerdes][randint(0, len(valaszok[kerdes] - 1))
+      valasz = valaszok[kerdes][random.randint(0, len(valaszok[kerdes]) -1)]
   else:
     valasz = "Erre nem tudok valaszolni."
   return valasz

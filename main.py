@@ -1,6 +1,8 @@
 import discord
 import os, random
 
+DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
+
 client = discord.Client()
 
 valaszok = {
@@ -60,4 +62,4 @@ async def on_message(message):
         await message.channel.send('Hozzám szólsz?')
 
 
-client.run(os.getenv('TOKEN'))
+client.run(os.getenv('DISCORD_TOKEN'))

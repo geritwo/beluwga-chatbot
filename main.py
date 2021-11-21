@@ -12,72 +12,20 @@ valaszok = {
     ],
     "hogy vagy?": [
         "Jól",
-        {
-            "Nem jól": [
-                {
-                    "miért?":
-                        [
-                            "Mert magányos vagyok",
-                            "Nem tudom.",
-                            "Egyszerűen rossz napom van."
-                        ]
-                },
-            ]
-        },
+        "Nem jól",
         "Egész jól"
     ]
 }
 
-
-def kulcs_egysegesito(lista):
-    kulcsok = []
-    for kulcs in lista:
-        if isinstance(kulcs, str):
-            kulcsok.append(kulcsok)
-        else:
-            kulcsok.append(list(kulcs.keys())[0])
-    return kulcsok
-
-
-def valasz_valaszto(valaszok_listaja):
-    valasz_index = valaszok_listaja[random.randint(0, len(valaszok_listaja) - 1)]
-    lehetseges_valaszok = kulcs_egysegesito(valaszok_listaja)
-    return lehetseges_valaszok[valasz_index]
-
-
-def valaszol(kerdes, elozo_kerdes, elozo_valasz):
-    if elozo_kerdes:
-        aktualis_fo_tema = valaszok[elozo_kerdes]
-        for tema in kulcs_egysegesito(aktualis_fo_tema):
-            if elozo_valasz == tema:
-                aktualis_tema = aktualis_fo_tema[aktualis_fo_tema.index(tema)]
+def valaszol(kerdes):
+  if kerdes in list(valaszok(keys)):
+    if isinstance(valaszok[kerdes], str):
+      valasz = valaszok[kerdes]
     else:
-        aktualis_tema = valaszok
-
-    if kerdes in list(aktualis_tema.keys()):
-        return valasz_valaszto(aktualis_tema)  # NOTE: Csak lista tartozhat a válaszokhoz!
-    else:
-        return "Erre nem tudok válaszolni."
-
-
-class Partnerek():
-
-    def __init__(self):
-        self.aktiv_partnerek = {}
-
-    def megjegyez(self, partner, kerdes, valasz):
-        self.aktiv_partnerek[partner] = [kerdes, valasz]
-
-    def felidez(self, partner):
-        if partner in list(self.aktiv_partnerek.keys()):
-            return self.aktiv_partnerek[partner][0], self.aktiv_partnerek[1]
-        else:
-            return "", ""
-
-
-# Main
-
-partnerek = Partnerek()
+      valasz = valaszok[kerdes][randint(0, len(valaszok[kerdes] - 1))
+  else:
+    valasz = "Erre nem tudok valaszolni."
+  return valasz
 
 
 @client.event
@@ -92,10 +40,7 @@ async def on_message(message):
 
     if message.content.startswith('$'):
         kerdes = message.content.split('$')[1].lower()
-        elozo_kerdes, elozo_valasz = partnerek.felidez(message.author)
-        valasz = valaszol(kerdes, elozo_kerdes, elozo_valasz)
-        partnerek.megjegyez(message.author, kerdes, valasz)
-
+        valasz = valaszol(kerdes)
         await message.channel.send(valasz)
 
 

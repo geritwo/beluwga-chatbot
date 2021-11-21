@@ -15,10 +15,38 @@ valaszok = {
         "Nem jól",
         "Egész jól"
     ],
-    "hány óra van?": "Nem tudom."
+    "hány óra van?": "Nem tudom.",
+    "$ko_papir_ollo":
+      [
+        "kő",
+        "papír",
+        "olló"
+      ]
 }
 
+def ko_papir_ollo(kerdes):
+  valasz = valaszok['$ko_papir_ollo'][random.randint(0, 2)].upper()
+  if valasz == kerdes:
+    valasz += ", döntetlen. Még egy kör?"
+  if valasz == "kő":
+      if kerdes == "papír":
+        valasz += ", te nyertél."
+      if kerdes == "olló":
+        valasz += ", én nyertem!"
+  if valasz == "papír":
+      if kerdes == "olló":
+        valasz += ", te nyertél."
+      if kerdes == "kő":
+        valasz += ", én nyertem!"
+    if valasz == "olló":
+      if kerdes == "kő":
+        valasz += ", te nyertél."
+      if kerdes == "papír":
+        valasz += ", én nyertem!"
+
 def valaszol(kerdes):
+  if kerdes == "kő" or kerdes == "papír" or kerdes == "olló":
+    ko_papir_ollo(kerdes)
   if kerdes in list(valaszok.keys()):
     if isinstance(valaszok[kerdes], str):
       valasz = valaszok[kerdes]

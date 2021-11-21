@@ -43,6 +43,9 @@ async def on_message(message):
         kerdes = message.content.split('$')[1].lower()
         valasz = valaszol(kerdes)
         await message.channel.send(valasz)
+    
+    if client.user.mentioned_in(message):
+        await message.channel.send('Hozzám szólsz?')
 
 
 client.run(os.getenv('TOKEN'))

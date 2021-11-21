@@ -39,19 +39,25 @@ def kulcs_egysegesito(lista):
     return kulcsok
 
 
-def valasz_valaszto(valaszok_lista):
-    valasz_index = valaszok_lista[random.randint(0, len(valaszok_lista) - 1)]
-    lehetseges_valaszok = kulcs_egysegesito(valaszok_lista)
+def valasz_valaszto(valaszok_listaja):
+    valasz_index = valaszok_listaja[random.randint(0, len(valaszok_listaja) - 1)]
+    lehetseges_valaszok = kulcs_egysegesito(valaszok_listaja)
     return lehetseges_valaszok[valasz_index]
 
 
 def valaszol(kerdes, elozo_kerdes, elozo_valasz):
-    if elozo_kerdes and elozo_valasz:
+    if elozo_kerdes:
         aktualis_fo_tema = valaszok[elozo_kerdes]
+        for tema in kulcs_egysegesito(aktualis_fo_tema):
+            if elozo_valasz == tema:
+                aktualis_tema = aktualis_fo_tema[aktualis_fo_tema.index(tema)]
+    else:
+        aktualis_tema = valaszok
 
-        for tema in aktualis_fo_tema:
-            if
-        megvalaszolando_tema =
+    if kerdes in list(aktualis_tema.keys()):
+        return valasz_valaszto(aktualis_tema)  # NOTE: Csak lista tartozhat a válaszokhoz!
+    else:
+        return "Erre nem tudok válaszolni."
 
 
 class Partnerek():

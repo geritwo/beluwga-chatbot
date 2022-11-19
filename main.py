@@ -27,4 +27,4 @@ async def on_message(message):
         await message.channel.send('Hozzám szólsz?')
 
 
-client.run(os.getenv('DISCORD_TOKEN'))
+client.run(DISCORD_TOKEN)

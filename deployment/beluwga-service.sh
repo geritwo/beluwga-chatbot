@@ -4,7 +4,7 @@
 # Manage by /etc/init.d/[scriptname] start or stop.
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
-DAEMON=/home/.. path to shell script scriptname created to run python script
+DAEMON=/home/beluwga-chatbot/beluwga-chatbot.sh
 PIDFILE=/var/run/scriptname.pid
 
 test -x $DAEMON || exit 0
